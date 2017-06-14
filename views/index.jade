@@ -1,0 +1,166 @@
+doctype html
+html
+  title W3.CSS Template
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  style.
+    form {
+    /* Just to center the form on the page */
+    margin: 0 auto;
+    width: 100%;
+    /* To see the outline of the form */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    }
+    form div + div {
+    margin-top: 1em;
+    }
+    label {
+    /* To make sure that all labels have the same size and are properly aligned */
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    }
+    input, textarea {
+    /* To make sure that all text fields have the same font settings
+    By default, textareas have a monospace font */
+    font: 1em sans-serif;
+    /* To give the same size to all text fields */
+    width: 100%;
+    box-sizing: border-box;
+    /* To harmonize the look & feel of text field border */
+    border: 1px solid #999;
+    }
+    input:focus, textarea:focus {
+    /* To give a little highlight on active elements */
+    border-color: #000;
+    }
+    textarea {
+    /* To properly align multiline text fields with their labels */
+    vertical-align: top;
+    /* To give enough room to type some text */
+    height: 5em;
+    }
+    .button {
+    /* To position the buttons to the same position of the text fields */
+    padding-left: 90px; /* same size as the label elements */
+    }
+    button {
+    /* This extra margin represent roughly the same space as the space
+    between the labels and their text fields */
+    margin-left: .5em;
+    }
+    #map {
+    height: 400px;
+    with:400px;
+    }
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-gear {font-size:200px}
+  body
+    // Navbar
+    .w3-top
+      .w3-bar.w3-red.w3-card-2.w3-left-align.w3-large
+        a.w3-bar-item.w3-button.w3-hide-medium.w3-hide-large.w3-right.w3-padding-large.w3-hover-white.w3-large.w3-red(href='javascript:void(0);', onclick='myFunction()', title='Toggle Navigation Menu')
+          i.fa.fa-bars
+        a.w3-bar-item.w3-button.w3-padding-large.w3-white(href='#') Home
+        a.w3-bar-item.w3-button.w3-hide-small.w3-padding-large.w3-hover-white(href='#') Link 1
+        a.w3-bar-item.w3-button.w3-hide-small.w3-padding-large.w3-hover-white(href='#') Link 2
+        a.w3-bar-item.w3-button.w3-hide-small.w3-padding-large.w3-hover-white(href='#') Link 3
+        a.w3-bar-item.w3-button.w3-hide-small.w3-padding-large.w3-hover-white(href='#') Link 4
+      // Navbar on small screens
+      #navDemo.w3-bar-block.w3-white.w3-hide.w3-hide-large.w3-hide-medium.w3-large
+        a.w3-bar-item.w3-button.w3-padding-large(href='#') Link 1
+        a.w3-bar-item.w3-button.w3-padding-large(href='#') Link 2
+        a.w3-bar-item.w3-button.w3-padding-large(href='#') Link 3
+        a.w3-bar-item.w3-button.w3-padding-large(href='#') Link 4
+    // Header
+    // First Grid
+    #map
+    script.
+      function initMap() {
+      var uluru = {lat: 25.6832051, lng: -100.273889};
+      var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: uluru,
+      });
+      var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+      });
+      }
+    script(async='', defer='', src=)
+    // Second Grid
+    .w3-row-padding.w3-light-grey.w3-padding-64.w3-container
+      .w3-content
+        .w3-third.w3-center
+          i.fa.fa-gear.w3-padding-64.w3-text-red.w3-margin-right
+        .w3-twothird
+          h1 Captura reporte
+          form(action='/', method='post')
+            div
+              label(for='name') Nombre:
+              input#name(type='text', name='user_name')
+            div
+              label(for='msg') Reporte:
+              textarea#msg(name='user_message')
+            div
+              label(for='mail') E-mail:
+              input#mail(type='email', name='user_mail')
+            div
+              label(for='place') Lugar:
+              input#place(type='coordinates', name='usercoord')
+            script.
+              function getLocation() {
+              if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+              } else {
+              document.getElementById("place").value= "Geolocation is not supported by this browser.";
+              }
+              }
+              function showPosition(position) {
+              document.getElementById("place").value = "Latitude: " + position.coords.latitude +
+              "| Longitude: " + position.coords.longitude;
+              }
+              getLocation();
+            div
+              label(for='time') Tiempo:
+              input#time(type='timestamp', name='tiempo', readonly='')
+            script.
+              document.getElementById("time").value  = + new Date();
+            .button
+              button.w3-button.w3-black.w3-padding-large.w3-large.w3-margin-top ENVIAR
+          p.w3-text-grey
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+            | occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            | laboris nisi ut aliquip ex ea commodo consequat.
+    .w3-container.w3-black.w3-center.w3-opacity.w3-padding-64
+      h1.w3-margin.w3-xlarge Quote of the day: live life
+    // Footer
+    footer.w3-container.w3-padding-64.w3-center.w3-opacity
+      .w3-xlarge.w3-padding-32
+        i.fa.fa-facebook-official.w3-hover-opacity
+        i.fa.fa-instagram.w3-hover-opacity
+        i.fa.fa-snapchat.w3-hover-opacity
+        i.fa.fa-pinterest-p.w3-hover-opacity
+        i.fa.fa-twitter.w3-hover-opacity
+        i.fa.fa-linkedin.w3-hover-opacity
+      p
+        | Powered by
+        a(href='https://www.w3schools.com/w3css/default.asp', target='_blank') w3.css
+    script.
+      // Used to toggle the menu on small screens when clicking on the menu button
+      function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      } else {
+      x.className = x.className.replace(" w3-show", "");
+      }
+      }
+
