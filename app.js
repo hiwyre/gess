@@ -1,4 +1,6 @@
 //require('./dbconnection.js').open();
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -12,6 +14,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,7 +53,8 @@ var userSchema = new Schema({
   correo: { type: String, required: true },
   mensaje: { type: String, required: true },
   momento: { type: String, required: true },
-  lugar: { type: String, required: true },
+  latitud: { type: String, required: true },
+  longitud: { type: String, required: true },
 });
 
 var reporte = mongoose.model('reporte', userSchema);
@@ -82,24 +89,41 @@ app.post('/', function(req, res) {
     var name = req.body.user_name;
     var message = req.body.user_message;
     var email = req.body.user_mail;
-    var place = req.body.usercoord;
+    var latitude= req.body.latitude;
+    var longitude = req.body.longitude;
     var time = req.body.tiempo;
 
     //
-    var newUser = new reporte({
+    var Reporte = new reporte({
       nombre:name.toString() ,
-      correo: message.toString() ,
-      mensaje: email.toString() ,
-      momento: place.toString() ,
-      lugar: time.toString() ,
+      correo: email.toString() ,
+      mensaje: message.toString() ,
+      momento: time.toString() ,
+      latitud: latitude.toString() ,
+      longitud: longitude.toString(),
     });
 
+    if (Reporte.nombre==''){
+      Reporte.nombre='null';
+    }
+
+    if (Reporte.correo==''){
+      Reporte.correo='null';
+    }
+
+    if (Reporte.mensaje==''){
+      Reporte.mensaje='null';
+    }
+
+    if (Reporte.momento==''){
+      Reporte.momento ='null';
+    }
+
     //
-
     console.log('you posted: First Name: ');
- res.send(name + ' ; ' + message + ';' +email+';'+place +';'+time);
+ res.send(name + ' ; ' + message + ';' +email+';' +';'+time);
 
- newUser.save(function(err) {
+ Reporte.save(function(err) {
    if (err) throw err;
 
    console.log('User created!');

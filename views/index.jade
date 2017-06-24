@@ -1,12 +1,19 @@
 doctype html
 html
-  title W3.CSS Template
+  title the watch
+  |   
   meta(charset='UTF-8')
+  |   
   meta(name='viewport', content='width=device-width, initial-scale=1')
+  |   
   link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+  |   
   link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+  |   
   link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+  |   
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  |   
   style.
     form {
     /* Just to center the form on the page */
@@ -62,6 +69,7 @@ html
     body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
     .fa-anchor,.fa-gear {font-size:200px}
+  |   
   body
     // Navbar
     .w3-top
@@ -82,6 +90,7 @@ html
     // Header
     // First Grid
     #map
+    |     
     script.
       function initMap() {
       var uluru = {lat: 25.6832051, lng: -100.273889};
@@ -91,54 +100,69 @@ html
       });
       var marker = new google.maps.Marker({
       position: uluru,
+      draggable:true,
       map: map
       });
+      google.maps.event.addListener(marker, 'dragend', function (event) {
+      document.getElementById("latbox").value = this.getPosition().lat();
+      document.getElementById("lngbox").value = this.getPosition().lng();
+      });
       }
-    script(async='', defer='', src=)
+    |     
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Rebyokd4J3RkR5ipBhvivcqTi6y0HfI&callback=initMap')
     // Second Grid
     .w3-row-padding.w3-light-grey.w3-padding-64.w3-container
       .w3-content
         .w3-third.w3-center
           i.fa.fa-gear.w3-padding-64.w3-text-red.w3-margin-right
+        |         
         .w3-twothird
           h1 Captura reporte
+          |           
           form(action='/', method='post')
             div
               label(for='name') Nombre:
+              |               
               input#name(type='text', name='user_name')
+            |             
             div
               label(for='msg') Reporte:
+              |               
               textarea#msg(name='user_message')
+            |             
             div
               label(for='mail') E-mail:
+              |               
               input#mail(type='email', name='user_mail')
+            |             
             div
-              label(for='place') Lugar:
-              input#place(type='coordinates', name='usercoord')
+              label(for='latbox') Latitude:
+              |               
+              input#latbox(type='coordinates', name='latitude', readonly='')
+            |             
+            div
+              label(for='lngbox') longitude:
+              |               
+              input#lngbox(type='coordinates', name='longitude', readonly='')
+            |             
             script.
-              function getLocation() {
-              if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
-              } else {
-              document.getElementById("place").value= "Geolocation is not supported by this browser.";
-              }
-              }
-              function showPosition(position) {
-              document.getElementById("place").value = "Latitude: " + position.coords.latitude +
-              "| Longitude: " + position.coords.longitude;
-              }
-              getLocation();
+            |           
             div
               label(for='time') Tiempo:
+              |             
               input#time(type='timestamp', name='tiempo', readonly='')
+            |             
             script.
               document.getElementById("time").value  = + new Date();
+            |             
             .button
               button.w3-button.w3-black.w3-padding-large.w3-large.w3-margin-top ENVIAR
+          |           
           p.w3-text-grey
             | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
             | occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             | laboris nisi ut aliquip ex ea commodo consequat.
+    |     
     .w3-container.w3-black.w3-center.w3-opacity.w3-padding-64
       h1.w3-margin.w3-xlarge Quote of the day: live life
     // Footer
@@ -150,9 +174,11 @@ html
         i.fa.fa-pinterest-p.w3-hover-opacity
         i.fa.fa-twitter.w3-hover-opacity
         i.fa.fa-linkedin.w3-hover-opacity
+      |       
       p
         | Powered by
         a(href='https://www.w3schools.com/w3css/default.asp', target='_blank') w3.css
+    |     
     script.
       // Used to toggle the menu on small screens when clicking on the menu button
       function myFunction() {
