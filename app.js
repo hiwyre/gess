@@ -89,8 +89,8 @@ app.post('/', function(req, res) {
     var name = req.body.user_name;
     var message = req.body.user_message;
     var email = req.body.user_mail;
-    var latitude= req.body.latitude;
-    var longitude = req.body.longitude;
+    var latitud= req.body.latitude;
+    var longitud = req.body.longitude;
     var time = req.body.tiempo;
 
     //
@@ -98,9 +98,9 @@ app.post('/', function(req, res) {
       nombre:name.toString() ,
       correo: email.toString() ,
       mensaje: message.toString() ,
-      momento: time.toString() ,
-      latitud: latitude.toString() ,
-      longitud: longitude.toString(),
+      momento: time ,
+      latitud: latitud.toString(),
+      longitud: longitud.toString(),
     });
 
     if (Reporte.nombre==''){
@@ -118,15 +118,25 @@ app.post('/', function(req, res) {
     if (Reporte.momento==''){
       Reporte.momento ='null';
     }
+    if (longitud.momento==''||parseFloat(longitud.momento)>parseFloat("-100.529311289065") ||parseFloat(longitud.momento)<parseFloat("-100.04489272314453") ){
+      longitud.momento ='null';
+      console.log('afuera longitud');
+      res.send("longitud affuera de el area" );
+    }
+    if (latitud.momento==''||parseFloat(latitud.momento)>parseFloat("25.615116815337") ||parseFloat(latitud.momento)<parseFloat("25.889081538902784") ){
+      latitud.momento ='null';
+      console.log('afuera latitud');
+      res.send("latitud affuera de el area" );
+    }
 
     //
-    console.log('you posted: First Name: ');
- res.send(name + ' ; ' + message + ';' +email+';' +';'+time);
+    console.log('se posteo ');
+ res.send(name + ' ; ' + message + ';' +email+';' +longitud +';'+latitud+';' +time);
 
  Reporte.save(function(err) {
    if (err) throw err;
 
-   console.log('User created!');
+   console.log('report created!');
  });
 
 });
