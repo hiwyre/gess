@@ -63,6 +63,8 @@ html
     .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
     .fa-anchor,.fa-book {font-size:200px}
   body
+    .w3-container.w3-indigo.w3-center.w3-opacity.w3-padding-64
+      h1.w3-margin.w3-xlarge la cuadrilla
     // Navbar
     .w3-top
       .w3-bar.w3-red.w3-card-2.w3-left-align.w3-large
@@ -370,6 +372,9 @@ html
       document.getElementById("lngbox").value = this.getPosition().lng();
       });
       }
+    
+    
+    
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Rebyokd4J3RkR5ipBhvivcqTi6y0HfI&callback=initMap')
     // Second Grid
     .w3-row-padding.w3-light-grey.w3-padding-64.w3-container
@@ -389,14 +394,14 @@ html
               label(for='mail') E-mail:
               input#mail(type='email', name='user_mail')
             div
-              label(for='latbox') Latitude:
-              input#latbox(type='coordinates', name='latitude', readonly='')
+              
+              input#latbox(type='hidden', name='latitude', readonly='')
             div
-              label(for='lngbox') longitude:
-              input#lngbox(type='coordinates', name='longitude', readonly='')
+             
+              input#lngbox(type='hidden', name='longitude', readonly='')
             div
-              label(for='time') Tiempo:
-              input#time(type='timestamp', name='tiempo', readonly='')
+            
+              input#time(type='hidden', name='tiempo', readonly='')
             script.
               var today = new Date();
               document.getElementById("time").value  = today.toGMTString();
